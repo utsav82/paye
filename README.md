@@ -73,12 +73,4 @@ Adjust your profile settings, including personal details and notification prefer
 
 ## Styling
 
-Paye follows a visually appealing and responsive design. The color scheme promotes clarity and simplicity, while icons enhance user understanding.
-
-## Development
-
-For developers looking to contribute or extend Paye's functionality, refer to the [developer documentation](#) for details on the project structure, coding conventions, and contribution guidelines.
-
-## Feedback
-
-We value your feedback! If you encounter issues or have suggestions for improvement,
+Paye utilizes the shadcn library to enhance the visual appeal and user experience.
