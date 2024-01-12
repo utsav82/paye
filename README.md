@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Paye - Frontend Documentation
+
+## Introduction
+
+Welcome to the documentation for the Paye frontend application built with Next.js. Paye is a Splitwise clone designed to simplify expense tracking and sharing among users.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you start using Paye, make sure you have the following prerequisites installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the Paye repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/yourusername/paye.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate to the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd paye
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Start the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run dev
+   ```
+
+   The application will be accessible at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+### Overview
+
+Paye provides a user-friendly interface for managing expenses within groups or individual transactions. The following sections detail the main features and functionalities.
+
+### Dashboard
+
+The dashboard provides an overview of your financial activities, displaying total amounts owed and owed to you. It also includes visual representations of expenses.
+
+### Group Management
+
+Create and manage groups for shared expenses with roommates, friends, or family. Navigate seamlessly between different groups.
+
+### Expense Entry
+
+Add expenses effortlessly with a simplified form. Include essential details such as amount, description, date, and category. Instant expenses not tied to any group are also supported.
+
+### User Balances
+
+View and settle debts with other users easily. Clear representations of balances make tracking shared expenses straightforward.
+
+### Expense History
+
+Access a chronological list of all expenses. Filter or search based on date, category, or group to quickly locate specific transactions.
+
+## Customization
+
+Adjust your profile settings, including personal details and notification preferences, for a personalized experience.
+
+## Styling
+
+Paye utilizes the shadcn library to enhance the visual appeal and user experience.
