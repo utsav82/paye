@@ -9,7 +9,7 @@ const MobileSideNav = () => {
     };
 
     return (
-        <div className="md:hidden absolute bg-white z-10">
+        <div className="md:hidden absolute bg-background z-10">
             <button onClick={toggleNav} className="p-3 focus:outline-none">
                 <svg
                     className="h-6 w-6 text-gray-600"
@@ -22,8 +22,6 @@ const MobileSideNav = () => {
                 >
                     <path d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
-
-
                 {/* Side Navigation */}
                 {isNavOpen && <SideNav className={"h-screen"} />}
             </button>
