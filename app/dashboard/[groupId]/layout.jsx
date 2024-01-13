@@ -61,7 +61,7 @@ const layout = ({ params, children }) => {
             direction="horizontal"
             className="h-screen container mt-10 items-stretch"
         >
-            <ResizablePanel defaultSize={50} minSize={30}>
+            <ResizablePanel defaultSize={50} minSize={40}>
                 <div className="flex items-center px-4 py-2">
                     <Link
                         href={`/dashboard/${params.groupId}`} className="text-xl font-bold">{params.groupId}</Link>
@@ -85,7 +85,7 @@ const layout = ({ params, children }) => {
                                             </div>
                                             <div
                                                 className=
-                                                "ml-auto text-xs text-foreground"
+                                                "hidden sm:block ml-auto text-xs text-foreground"
                                             >
                                                 {formatDistanceToNow(new Date(expense.date), { addSuffix: true })}
                                             </div>
@@ -94,6 +94,12 @@ const layout = ({ params, children }) => {
                                     </div>
                                     <div className="line-clamp-2 text-xs text-muted-foreground">
                                         {expense.amount.toFixed(2)} USD {/* Assuming 'amount' is a numeric field */}
+                                    </div>
+                                    <div
+                                        className=
+                                        "sm:hidden text-xs text-foreground"
+                                    >
+                                        {formatDistanceToNow(new Date(expense.date), { addSuffix: true })}
                                     </div>
                                     {expense.groupName && <div className="text-xs text-muted-foreground">{expense.groupName}</div>}
                                 </Link>

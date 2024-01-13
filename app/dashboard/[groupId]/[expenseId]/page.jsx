@@ -21,7 +21,7 @@ const page = ({ params }) => {
     };
     const { description, amount, category, date, groupName, userName, shares } = selectedExpense;
     return (
-        <Card className="h-screen">
+        <div>
             <CardHeader>
                 <CardTitle>{description}</CardTitle>
                 <CardDescription>{category}</CardDescription>
@@ -43,7 +43,7 @@ const page = ({ params }) => {
                     </ul>
                 </div>
             </CardContent>
-        </Card>
+        </div>
     )
 }
 
