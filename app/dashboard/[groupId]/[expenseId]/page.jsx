@@ -12,8 +12,8 @@ const page = ({ params }) => {
         amount: 50.25,
         category: "Food",
         date: new Date("2024-01-15"),
-        group_id: "flat-mates", 
-        userName: "Alicia Koch", 
+        group_id: "flat-mates",
+        userName: "Alicia Koch",
         shares: [
             { user_id: '1', user_name: 'Olivia Martin', share_amount: 25.38 },
             { user_id: '2', user_name: 'Jackson Lee', share_amount: 25.37 },
@@ -21,7 +21,7 @@ const page = ({ params }) => {
     };
     const { description, amount, category, date, groupName, userName, shares } = selectedExpense;
     return (
-        <Card className="h-screen">
+        <div>
             <CardHeader>
                 <CardTitle>{description}</CardTitle>
                 <CardDescription>{category}</CardDescription>
@@ -43,7 +43,7 @@ const page = ({ params }) => {
                     </ul>
                 </div>
             </CardContent>
-        </Card>
+        </div>
     )
 }
 
