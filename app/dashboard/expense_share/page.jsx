@@ -1,5 +1,5 @@
 import React from "react";
-import DataTable from "@/components/ui/tabledata";
+import DataTable from "@/components/tabledata";
 
 const data = [
   {
@@ -51,32 +51,11 @@ const data = [
     date: "6-Mar-2018",
   },
 ];
-const columns = [
-  {
-    accessorKey: "groupName",
-    header: "GroupName",
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-  },
-  {
-    accessorKey: "amount",
-    header: "Amount",
-  },
-  {
-    accessorKey: "payer",
-    header: "Payer",
-  },
-  {
-    accessorKey: "date",
-    header: "Date",
-  },
-];
+
 const page = () => {
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable data={data} />
     </div>
   );
 };

@@ -27,9 +27,9 @@ const SideNav = ({ className }) => {
                         variant: "ghost",
                     },
                     {
-                        title: "Share Expenses",
+                        title: "Expense shares",
                         icon: Inbox,
-                        href: "/dashboard/Share_Expenses",
+                        href: "/dashboard/expense_share",
                         variant: "ghost",
                     },
                 ]}

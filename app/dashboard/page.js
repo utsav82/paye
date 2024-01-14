@@ -11,7 +11,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/date-range-picker";
 import { Overview } from "@/components/overview";
-import { RecentSales } from "@/components/recent-sales";
+import { RecentExpenses } from "@/components/recent-expenses";
 
 export const metadata = {
   title: "Dashboard",
@@ -61,7 +61,7 @@ export default function DashboardPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <RecentSales />
+                <RecentExpenses />
               </CardContent>
             </Card>
             <div className="flex flex-col gap-4">

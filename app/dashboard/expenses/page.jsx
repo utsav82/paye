@@ -1,9 +1,10 @@
-import React from 'react'
-
+import ExpenseCard from "@/components/expense-card"
 function page() {
   return (
-    <div>
-      Expenses Page
+    <div className="container flex flex-col gap-4 my-16">
+       <ExpenseCard/>
+       <ExpenseCard/>
+       <ExpenseCard/>
     </div>
   )
 }

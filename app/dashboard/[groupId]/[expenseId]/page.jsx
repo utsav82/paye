@@ -7,43 +7,51 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 const page = ({ params }) => {
-    const selectedExpense = {
-        description: "Grocery Shopping",
-        amount: 50.25,
-        category: "Food",
-        date: new Date("2024-01-15"),
-        group_id: "flat-mates",
-        userName: "Alicia Koch",
-        shares: [
-            { user_id: '1', user_name: 'Olivia Martin', share_amount: 25.38 },
-            { user_id: '2', user_name: 'Jackson Lee', share_amount: 25.37 },
-        ]
-    };
-    const { description, amount, category, date, groupName, userName, shares } = selectedExpense;
+
     return (
-        <div>
+        <div className="w-full max-w-md overflow-hidden">
             <CardHeader>
-                <CardTitle>{description}</CardTitle>
-                <CardDescription>{category}</CardDescription>
+                <CardTitle>Grocery Shopping</CardTitle>
+                <CardDescription>
+                    $50.25
+                    <br />
+                    Food
+                    <br />
+                    January 15, 2024
+                    <br />
+                    Alicia Koch
+                </CardDescription>
             </CardHeader>
-            <CardContent>
-                <div className="flex flex-col">
-                    <p className="text-lg font-semibold">Amount: ${amount.toFixed(2)}</p>
-                    <p>Date: {new Date(date).toLocaleDateString()}</p>
-                    <p>User: {userName || 'Not specified'}</p>
-                </div>
-                <div className="mt-4">
-                    <p className="text-lg font-semibold mb-2">Expense Shares:</p>
-                    <ul>
-                        {shares.map((share) => (
-                            <li key={share.user_id}>
-                                {share.user_name}: ${share.share_amount.toFixed(2)}
-                            </li>
-                        ))}
-                    </ul>
+            <CardContent className="grid gap-4 border-y py-4">
+                <div className="grid gap-1">
+                    <h3 className="font-semibold text-lg md:text-xl">Shares</h3>
+                    <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-row items-center gap-2">
+                            <p className="mr-1">OM</p>
+                            <div>
+                                <div>Olivia Martin</div>
+                                <div className="text-sm">$25.38</div>
+                            </div>
+                        </div>
+                        <div className="flex flex-row items-center gap-2">
+                            <p className="mr-1">JL</p>
+                            <div>
+                                <div>Jackson Lee</div>
+                                <div className="text-sm text-gray-500 dark:text-gray-400">$25.37</div>
+                            </div>
+                        </div>
+                        <div className="flex flex-row items-center gap-2">
+                            <p className="mr-1">JL</p>
+                            <div>
+                                <div>Jackson Lee</div>
+                                <div className="text-sm text-gray-500 dark:text-gray-400">$25.37</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </CardContent>
         </div>
+
     )
 }
 
