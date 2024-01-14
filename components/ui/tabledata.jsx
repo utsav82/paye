@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { Button, Modal } from "flowbite-react";
 
 import {
   ColumnDef,
@@ -16,6 +18,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const DataTable = ({ columns, data }) => {
   const table = useReactTable({
@@ -23,6 +33,7 @@ const DataTable = ({ columns, data }) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="rounded-md border">
       <Table>
