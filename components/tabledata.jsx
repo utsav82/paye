@@ -31,7 +31,7 @@ export default function DataTable({ data }) {
             <TableCell>{data.payer}</TableCell>
             <TableCell>{data.date}</TableCell>
             <TableCell>{data.amount}</TableCell>
-            <TableCell><Button>Pay</Button></TableCell>
+            <TableCell><Button className="rounded">Pay</Button></TableCell>
           </TableRow>
         ))}
       </TableBody>

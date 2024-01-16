@@ -27,9 +27,9 @@ export default function DashboardPage() {
               <CalendarDateRangePicker />
             </div>
           </div>
-          <div className="bg-green-200 rounded-lg p-4 sm:p-8 mb-4">
-            <div className="flex items-center justify-between relative">
-              <div>
+          <div className="bg-green-200 rounded p-4 sm:p-8 mb-4">
+            <div className="flex items-center justify-between relative rounded">
+              <div className="rounded">
                 <p className="text-sm text-green-800 font-semibold text-wrap max-w-sm">
                   Welcome back!
                 </p>
