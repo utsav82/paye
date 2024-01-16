@@ -1,6 +1,10 @@
 import React from "react";
 import DataTable from "@/components/tabledata";
 
+export const metadata = {
+  title: "Expense Shares",
+};
+
 const data = [
   {
     id: "728ed52g",

@@ -1,12 +1,12 @@
 import { Input } from "@/components/ui/input"
-
+import { FaceIcon, ImageIcon, SunIcon } from '@radix-ui/react-icons'
 export function Search() {
   return (
     <div>
       <Input
         type="search"
         placeholder="Search..."
-        className="md:w-[100px] lg:w-[300px]"
+        className="m-2 mt-2 p-3"
       />
     </div>
   )

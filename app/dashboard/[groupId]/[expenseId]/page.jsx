@@ -44,7 +44,7 @@ const Page = ({ params }) => {
                                     <p className="mr-1">{share.avatarFallback}</p>
                                     <div>
                                         <div>{share.name}</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">{`$${share.amount.toFixed(2)}`}</div>
+                                        <div className="text-sm">{`$${share.amount.toFixed(2)}`}</div>
                                     </div>
                                 </div>
                             ))}

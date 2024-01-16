@@ -3,7 +3,14 @@ import { Separator } from '@/components/ui/separator';
 import { formatDistanceToNow } from 'date-fns';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
+
+export const metadata = {
+    title: "Group",
+  };
+
+  
 const layout = ({ params, children }) => {
+
     const expenses = [
         {
             description: "Grocery Shopping",

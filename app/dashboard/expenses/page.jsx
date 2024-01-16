@@ -1,4 +1,10 @@
 import ExpenseCard from "@/components/expense-card"
+import { Search } from "@/components/search";
+export const metadata = {
+  title: "Expenses",
+};
+
+
 function page() {
 
   const dummyData = [
@@ -6,7 +12,7 @@ function page() {
       title: "Groceries",
       description: "Monthly groceries shopping",
       category: "Food & Drinks",
-      categoryColor: "green-500",
+      categoryColor: "green",
       amount: 120.0,
       date: "Jan 20, 2024",
       expenseMadeBy: "John Doe",
@@ -39,7 +45,7 @@ function page() {
       title: "Dinner Out",
       description: "Celebratory dinner",
       category: "Dining",
-      categoryColor: "orange-500",
+      categoryColor: "orange",
       amount: 150.0,
       date: "Feb 15, 2024",
       expenseMadeBy: "Alice Smith",
@@ -79,7 +85,7 @@ function page() {
       title: "Movie Night",
       description: "Tickets for the latest releases",
       category: "Entertainment",
-      categoryColor: "purple-500",
+      categoryColor: "purple",
       amount: 80.0,
       date: "Mar 5, 2024",
       expenseMadeBy: "David Johnson",
@@ -105,6 +111,10 @@ function page() {
 
   return (
     <div className="container flex flex-col gap-4 my-16">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ml-2">
+      Your Expenses
+      </h2>
+      <Search />
       {dummyData.map((expenseData, index) => (
         <ExpenseCard key={index} expenseData={expenseData} />
       ))}

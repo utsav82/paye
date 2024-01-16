@@ -1,13 +1,9 @@
 import React from 'react'
 
-export const metadata = {
-  title: "Settings",
-};
-
 const page = () => {
   return (
     <div>
-      Settings page
+      Profile Page
     </div>
   )
 }
