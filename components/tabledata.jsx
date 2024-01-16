@@ -31,10 +31,10 @@ export default function DataTable({ data }) {
             <TableCell>{data.payer}</TableCell>
             <TableCell>{data.date}</TableCell>
             <TableCell>{data.amount}</TableCell>
-            <TableCell><Button className="rounded">Pay</Button></TableCell>
+            {(data.status === 'pending') < TableCell > <Button className="rounded">Pay</Button>}
           </TableRow>
         ))}
       </TableBody>
-    </Table>
+    </Table >
   )
 }
