@@ -31,7 +31,7 @@ export default function DataTable({ data }) {
             <TableCell>{data.payer}</TableCell>
             <TableCell>{data.date}</TableCell>
             <TableCell>{data.amount}</TableCell>
-            {(data.status === 'pending') < TableCell > <Button className="rounded">Pay</Button>}
+            {(data.status === 'pending') && < TableCell > <Button className="rounded">Pay</Button></TableCell>}
           </TableRow>
         ))}
       </TableBody>
