@@ -1,16 +1,35 @@
 import React from 'react'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 
+const MemberCard = ({ avatarFallback, name, email }) => {
+  return (
+    <div className="flex items-center">
+      <Avatar className="h-9 w-9">
+        <AvatarFallback>{avatarFallback}</AvatarFallback>
+      </Avatar>
+      <div className="ml-4 space-y-1">
+        <p className="text-sm font-medium leading-none">{name}</p>
+        <p className="hidden sm:block text-sm text-muted-foreground">{email}</p>
+      </div>
+    </div>
+  );
+};
 
-const page = () => {
+const Page = () => {
+  const members = [
+    { avatarFallback: 'OM', name: 'Olivia Martin', email: 'olivia.martin@email.com' },
+    { avatarFallback: 'JL', name: 'Jackson Lee', email: 'jackson.lee@email.com' },
+    { avatarFallback: 'IN', name: 'Isabella Nguyen', email: 'isabella.nguyen@email.com' },
+    { avatarFallback: 'WK', name: 'William Kim', email: 'will@email.com' },
+    { avatarFallback: 'SD', name: 'Sofia Davis', email: 'sofia.davis@email.com' },
+  ];
+
   return (
     <div>
       <CardHeader>
@@ -18,64 +37,13 @@ const page = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-8">
-          <div className="flex items-center">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="/avatars/01.png" alt="Avatar" />
-              <AvatarFallback>OM</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">Olivia Martin</p>
-              <p className="hidden sm:block text-sm text-muted-foreground">
-                olivia.martin@email.com
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center">
-            <Avatar className="flex h-9 w-9 items-center justify-center space-y-0 border">
-              <AvatarImage src="/avatars/02.png" alt="Avatar" />
-              <AvatarFallback>JL</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">Jackson Lee</p>
-              <p className="hidden sm:block text-sm text-muted-foreground">jackson.lee@email.com</p>
-            </div>
-          </div>
-          <div className="flex items-center">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="/avatars/03.png" alt="Avatar" />
-              <AvatarFallback>IN</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">Isabella Nguyen</p>
-              <p className="hidden sm:block text-sm text-muted-foreground">
-                isabella.nguyen@email.com
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="/avatars/04.png" alt="Avatar" />
-              <AvatarFallback>WK</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">William Kim</p>
-              <p className="hidden sm:block text-sm text-muted-foreground">will@email.com</p>
-            </div>
-          </div>
-          <div className="flex items-center">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="/avatars/05.png" alt="Avatar" />
-              <AvatarFallback>SD</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">Sofia Davis</p>
-              <p className="hidden sm:block text-sm text-muted-foreground">sofia.davis@email.com</p>
-            </div>
-          </div>
+          {members.map((member, index) => (
+            <MemberCard key={index} {...member} />
+          ))}
         </div>
       </CardContent>
     </div>
   );
 };
 
-export default page
+export default Page;

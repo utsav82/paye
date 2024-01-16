@@ -23,7 +23,7 @@ const MobileSideNav = () => {
                     <path d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
                 {/* Side Navigation */}
-                {isNavOpen && <SideNav className={"h-screen"} />}
+                {isNavOpen && <SideNav className={"h-screen ease-in"} />}
             </button>
         </div>
     );

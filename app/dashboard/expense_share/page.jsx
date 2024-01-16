@@ -3,14 +3,6 @@ import DataTable from "@/components/tabledata";
 
 const data = [
   {
-    id: "728ed52f",
-    amount: 5000,
-    status: "pending",
-    groupName: "Goa Trip",
-    payer: "Utsav",
-    date: "19-Mar-2020",
-  },
-  {
     id: "728ed52g",
     amount: 10000,
     status: "pending",
@@ -52,10 +44,16 @@ const data = [
   },
 ];
 
+const pendingTransactions = data.filter(transaction => transaction.status.toLowerCase() === 'pending');
+const completedTransactions = data.filter(transaction => transaction.status.toLowerCase() === 'completed');
+
 const page = () => {
   return (
     <div className="container mx-auto py-10">
-      <DataTable data={data} />
+      <h3 className="text-2xl font-semibold leading-none tracking-tight border-b py-3">Pending transactions</h3>
+      <DataTable data={pendingTransactions} />
+      <h3 className="text-2xl font-semibold leading-none tracking-tight border-b py-3">Sucessful transactions</h3>
+      <DataTable data={completedTransactions} />
     </div>
   );
 };

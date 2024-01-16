@@ -93,7 +93,7 @@ const layout = ({ params, children }) => {
                                         <div className="text-xs font-medium">{expense.category}</div>
                                     </div>
                                     <div className="line-clamp-2 text-xs text-muted-foreground">
-                                        {expense.amount.toFixed(2)} USD {/* Assuming 'amount' is a numeric field */}
+                                        {expense.amount.toFixed(2)} USD 
                                     </div>
                                     <div
                                         className=
