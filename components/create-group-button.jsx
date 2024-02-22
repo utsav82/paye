@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label"
 
 const CreateGroup = () => {
     return (
-        <Dialog>
+        <Dialog >
             <DialogTrigger asChild>
                 <Button variant="outline" className="m-4 mt-2 p-3">
                     <svg
