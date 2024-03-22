@@ -4,6 +4,10 @@
 
 Welcome to the documentation for the Paye frontend application built with Next.js. Paye is a Splitwise clone designed to simplify expense tracking and sharing among users.
 
+**Work in Progress**
+
+This project is currently under in progress. The frontend is in a preliminary stage and serves as a placeholder.
+
 ## Getting Started
 
 ### Prerequisites
@@ -11,7 +15,6 @@ Welcome to the documentation for the Paye frontend application built with Next.j
 Before you start using Paye, make sure you have the following prerequisites installed:
 
 - [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
 
 ### Installation
 
