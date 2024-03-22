@@ -1,4 +1,4 @@
-# Paye - Frontend Documentation
+# Paye
 
 ## Introduction
 
