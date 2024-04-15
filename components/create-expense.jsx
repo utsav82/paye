@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog"
 export default function CreateExpense() {
     return (
-        <div className="absolute bottom-0 right-0">
+        <div className="fixed bottom-0 right-0">
             <Dialog >
                 <DialogTrigger asChild>
                     <Button variant="outline" className="m-4 mt-2 p-3">
@@ -57,10 +57,10 @@ export default function CreateExpense() {
                                     </Label>
                                     <Input id="description" placeholder="Enter a description" />
                                 </div>
-                                
+
                                 <div className="space-y-2">
                                     <Label className="text-base">Category</Label>
-                                    <RadioGroup className="flex items-center gap-4" defaultValue="food" id="category">
+                                    <RadioGroup className="flex items-center gap-4 flex-wrap" defaultValue="food" id="category">
                                         <Label className="cursor-pointer" htmlFor="food">
                                             <RadioGroupItem className="peer sr-only" id="food" value="food" />
                                             <div className="flex items-center">
@@ -68,15 +68,29 @@ export default function CreateExpense() {
                                                 Food
                                             </div>
                                         </Label>
-                                        <Label className="cursor-pointer" htmlFor="drinks">
-                                            <RadioGroupItem className="peer sr-only" id="drinks" value="drinks" />
+                                        <Label className="cursor-pointer" htmlFor="groceries">
+                                            <RadioGroupItem className="peer sr-only" id="groceries" value="groceries" />
                                             <div className="flex items-center">
                                                 <span className="w-4 h-4 border border-gray-300 rounded-full flex-shrink-0 mr-2" />
-                                                Drinks
+                                                Groceries
                                             </div>
                                         </Label>
-                                        <Label className="cursor-pointer" htmlFor="other">
-                                            <RadioGroupItem className="peer sr-only" id="other" value="other" />
+                                        <Label className="cursor-pointer" htmlFor="clothing">
+                                            <RadioGroupItem className="peer sr-only" id="clothing" value="clothing" />
+                                            <div className="flex items-center">
+                                                <span className="w-4 h-4 border border-gray-300 rounded-full flex-shrink-0 mr-2" />
+                                                Clothing
+                                            </div>
+                                        </Label>
+                                        <Label className="cursor-pointer" htmlFor="entertainment">
+                                            <RadioGroupItem className="peer sr-only" id="entertainment" value="entertainment" />
+                                            <div className="flex items-center">
+                                                <span className="w-4 h-4 border border-gray-300 rounded-full flex-shrink-0 mr-2" />
+                                                Entertainment
+                                            </div>
+                                        </Label>
+                                        <Label className="cursor-pointer" htmlFor="entertainment">
+                                            <RadioGroupItem className="peer sr-only" id="entertainment" value="entertainment" />
                                             <div className="flex items-center">
                                                 <span className="w-4 h-4 border border-gray-300 rounded-full flex-shrink-0 mr-2" />
                                                 Other
@@ -84,13 +98,15 @@ export default function CreateExpense() {
                                         </Label>
                                     </RadioGroup>
                                 </div>
-                                <div className="space-y-2">
+                                
+                                {/* TODO:Enable screenshots
+                                 <div className="space-y-2">
                                     <Label className="text-base" htmlFor="screenshot">
                                         Attach Screenshot
                                     </Label>
                                     <Input accept="image/*" id="screenshot" type="file" />
-                                </div>
-                              
+                                </div> */}
+
                             </div>
                         </CardContent>
                         <CardFooter>

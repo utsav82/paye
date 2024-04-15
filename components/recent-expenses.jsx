@@ -56,7 +56,7 @@ export function RecentExpenses() {
             <p className="text-sm font-medium leading-none">{item.name}</p>
             <p className="text-sm text-muted-foreground">{item.email}</p>
           </div>
-          <div className="ml-auto font-medium">{`+$${item.amount.toFixed(2)}`}</div>
+          <div className="ml-auto font-medium">{`+₹${item.amount.toFixed(2)}`}</div>
         </div>
       ))}
     </div>

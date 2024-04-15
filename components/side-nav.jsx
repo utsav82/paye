@@ -1,15 +1,32 @@
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { Bike, File, Inbox, LayoutDashboard, Home, Users2 } from "lucide-react";
+import { Bell, File, Inbox, LayoutDashboard, LogOut } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Nav } from "@/components/main-nav";
-import { UserNav } from "@/components/user-nav";
-import CreateGroup from "./create-group-button";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 const SideNav = ({ className }) => {
     return (
         <div className={cn("p-5", className)}>
-            <div className="flex items-center gap-2 mt-5 mb-2">
-                <UserNav />
+            <div className="flex items-center gap-2 my-5">
+                <div
+                    className="w-48 justify-evenly flex items-center"
+                >
+                    <Avatar className="mr-2 h-5 w-5">
+                        <AvatarImage
+                            src="https://avatar.vercel.sh/shadcn.png"
+                            className="grayscale"
+                        />
+                        <AvatarFallback>SC</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                        <span className="text-md font-semibold">Alicia Koch</span>
+                        <span className="text-sm ">m@gmail.com</span>
+                    </div>
+                </div>
                 <ModeToggle />
             </div>
             <Nav
@@ -35,10 +52,26 @@ const SideNav = ({ className }) => {
                 ]}
             />
             <Separator />
-            <div className="group flex gap-4 pl-2 pt-2 m-2 font-semibold items-center">
-                <Users2 className="h-4 w-4" /> <div> Your Groups</div>
-            </div>
+            <Nav
+                links={[
+                    {
+                        title: "Notifications",
+                        icon: Bell,
+                        href: "/dashboard/notifications",
+                        variant: "ghost",
+                    },
+                    {
+                        title: "Logout",
+                        icon: LogOut,
+                        href: "/",
+                        variant: "ghost",
+                    },
+                ]}
+            />
 
+
+            {/* 
+             TODO: Add Groups 
             <Nav
                 links={[
                     {
@@ -56,7 +89,8 @@ const SideNav = ({ className }) => {
                 ]}
             />
             <CreateGroup></CreateGroup>
-            <Separator className="hidden sm:block" />
+            */}
+
         </div>
     )
 }

@@ -1,14 +1,14 @@
 import ExpenseCard from "@/components/expense-card"
-import { Search } from "@/components/search";
+import { SearchComponent } from "@/components/search";
 export const metadata = {
   title: "Expenses",
 };
-
 
 function page() {
 
   const dummyData = [
     {
+      id: "1",
       title: "Groceries",
       description: "Monthly groceries shopping",
       category: "Food & Drinks",
@@ -42,6 +42,7 @@ function page() {
       ]
     },
     {
+      id: "2",
       title: "Dinner Out",
       description: "Celebratory dinner",
       category: "Dining",
@@ -82,6 +83,8 @@ function page() {
       ]
     },
     {
+
+      id: "3",
       title: "Movie Night",
       description: "Tickets for the latest releases",
       category: "Entertainment",
@@ -112,9 +115,9 @@ function page() {
   return (
     <div className="container flex flex-col gap-4 my-16">
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ml-2">
-      Your Expenses
+        Your Expenses
       </h2>
-      <Search />
+      <SearchComponent />
       {dummyData.map((expenseData, index) => (
         <ExpenseCard key={index} expenseData={expenseData} />
       ))}

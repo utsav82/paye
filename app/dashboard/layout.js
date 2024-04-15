@@ -8,7 +8,7 @@ export default function DashBoardLayout({ children }) {
       <SideNav className={"hidden md:block "} />
       <MobileSideNav />
       <div className="w-full"> {children}</div>
-      <CreateExpense></CreateExpense>
+      <CreateExpense />
     </div>
   );
 }

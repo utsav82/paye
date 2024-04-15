@@ -1,12 +1,14 @@
 "use client"
 import React, { useState } from 'react';
 import { Separator } from "@/components/ui/separator";
-import { Bike, File, Inbox, LayoutDashboard, Home, Users2 } from "lucide-react";
+import { Bell, File, Inbox, LayoutDashboard, LogOut } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Nav } from "@/components/main-nav";
-import { UserNav } from "@/components/user-nav";
-import CreateGroup from "./create-group-button";
-
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 
 const MobileSideNav = () => {
     const [isNavOpen, setNavOpen] = useState(false);
@@ -33,8 +35,22 @@ const MobileSideNav = () => {
             {/* Side Navigation */}
             {isNavOpen && <div className="p-5 h-screen ease-in-out">
                 <div onClick={toggleNav} >
-                    <div className="flex items-center gap-2 mt-5 mb-2">
-                        <UserNav />
+                    <div className="flex items-center gap-2 my-5">
+                        <div
+                            className="w-48 justify-evenly flex items-center"
+                        >
+                            <Avatar className="mr-2 h-5 w-5">
+                                <AvatarImage
+                                    src="https://avatar.vercel.sh/shadcn.png"
+                                    className="grayscale"
+                                />
+                                <AvatarFallback>SC</AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col">
+                                <span className="text-md font-semibold">Alicia Koch</span>
+                                <span className="text-sm ">m@gmail.com</span>
+                            </div>
+                        </div>
                         <ModeToggle />
                     </div>
                     <Nav
@@ -60,28 +76,23 @@ const MobileSideNav = () => {
                         ]}
                     />
                     <Separator />
-                    <div className="group flex gap-4 pl-2 pt-2 m-2 font-semibold items-center">
-                        <Users2 className="h-4 w-4" /> <div> Your Groups</div>
-                    </div>
                     <Nav
                         links={[
                             {
-                                title: "Flat Mates",
-                                icon: Home,
-                                href: "/dashboard/flat-mates",
+                                title: "Notifications",
+                                icon: Bell,
+                                href: "/dashboard/notifications",
                                 variant: "ghost",
                             },
                             {
-                                title: "Goa Trip",
-                                icon: Bike,
-                                href: "/dashboard/goa-trip",
+                                title: "Logout",
+                                icon: LogOut,
+                                href: "/",
                                 variant: "ghost",
                             },
                         ]}
                     />
                 </div>
-                <CreateGroup></CreateGroup>
-                <Separator className="hidden sm:block" />
             </div>}
         </div>
     );
