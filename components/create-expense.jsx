@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -7,58 +7,155 @@ import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { X } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useToast } from "@/components/ui/use-toast"
+import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 export default function CreateExpense() {
+    const router = useRouter();
+    const { toast } = useToast()
+    const supabase = createClient();
     const [step, setStep] = useState(1);
     const [billAmount, setBillAmount] = useState("");
+    const [yourShare, setYourShare] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("food");
     const [title, setTitle] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [friends, setFriends] = useState([]);
     const [friendSearch, setFriendSearch] = useState("");
     const [friendShares, setFriendShares] = useState({});
+    const [friendSuggestions, setFriendSuggestions] = useState([]);
+    const [allFriends, setAllFriends] = useState([])
+    const [isLoading, setisLoading] = useState(false);
+
+    useEffect(() => {
+
+        const fetchFriends = async () => {
+            const { data, error } = await supabase.from("users").select("*");
+            if (error) {
+                console.error("Error fetching friends: ", error.message);
+                return;
+            }
+            setAllFriends(data);
+        }
+
+        fetchFriends();
+
+    }, []);
+
+    const searchFriendsDatabase = (query) => {
+        return allFriends.filter(friend => friend.name.toLowerCase().includes(query.toLowerCase()));
+    };
 
     const handleFriendSearch = (event) => {
-        if (event.key === "Enter") {
-            const friendName = event.target.value;
-            if (friendName && !friends.includes(friendName)) {
-                setFriends([...friends, friendName]);
-                setFriendShares({ ...friendShares, [friendName]: 0 });
-            }
-            setFriendSearch("");
+        const query = event.target.value;
+        setFriendSearch(query);
+        if (query.length > 0) {
+            const suggestions = searchFriendsDatabase(query);
+            setFriendSuggestions(suggestions);
+        } else {
+            setFriendSuggestions([]);
         }
     };
 
-    const handleShareChange = (friend, value) => {
-        setFriendShares({ ...friendShares, [friend]: Number(value) });
+    const handleAddFriend = (friend) => {
+        if (!friends.some(f => f.id === friend.id)) {
+            setFriends([...friends, friend]);
+            setFriendShares({ ...friendShares, [friend.id]: 0 });
+        }
+        setFriendSearch("");
+        setFriendSuggestions([]);
+    };
+
+    const handleShareChange = (friendId, value) => {
+        setFriendShares({ ...friendShares, [friendId]: value });
     };
 
     const removeFriend = (friend) => {
-        const updatedFriends = friends.filter((f) => f !== friend);
+        const updatedFriends = friends.filter((f) => f.id !== friend.id);
         const updatedShares = { ...friendShares };
-        delete updatedShares[friend];
+        delete updatedShares[friend.id];
         setFriends(updatedFriends);
         setFriendShares(updatedShares);
-    }
+    };
 
     const handleSubmit = () => {
-        const totalShares = Object.values(friendShares).reduce((acc, share) => acc + share, 0);
+
+
+        const totalShares = Object.values(friendShares).reduce((acc, share) => acc + Number(share), 0) + Number(yourShare);
         if (totalShares !== Number(billAmount)) {
-            alert("Shares do not sum up to the total bill amount");
+            toast({
+                variant: "destructive",
+                title: "Shares do not sum up to the total bill amount",
+            })
+            return;
+        }
+
+        if (!title) {
+            toast({
+                variant: "destructive",
+                title: "Title cannot be empty",
+            })
+            return;
+        }
+
+        if (!billAmount) {
+            toast({
+                variant: "destructive",
+                title: "Amount cannot be empty",
+            })
             return;
         }
 
         const expenseData = {
             title,
             billAmount,
+            yourShare,
             description,
             category,
             date,
             friendShares,
         };
-
+        callUploadExpenseApi(expenseData);
         console.log("Submitting Expense Data: ", expenseData);
     };
+
+
+    async function callUploadExpenseApi(data) {
+        try {
+            setisLoading(true);
+            const response = await fetch('/api/expense', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            if (!response.error) {
+                toast({
+                    title: "Expense and shares uploaded successfully.",
+                })
+                router.push("/dashboard/expenses");
+            } else {
+                toast({
+                    variant: "destructive",
+                    title: ('Error:' + result.error),
+                })
+            }
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: ('Error:' + error.message),
+            })
+        }
+        finally {
+            setisLoading(false);
+        }
+    }
+
 
     return (
         <div className="fixed bottom-0 right-0">
@@ -177,26 +274,60 @@ export default function CreateExpense() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label htmlFor="friend-search">Add Friend</Label>
+                                        <Label htmlFor="your-share">Your share</Label>
+                                        <Input
+                                            id="your-share"
+                                            placeholder="Enter your share"
+                                            type="number"
+                                            value={yourShare}
+                                            onChange={(e) => setYourShare(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="friend-search">Add Friends</Label>
                                         <Input
                                             id="friend-search"
-                                            placeholder="Enter friend name"
+                                            placeholder="Search for friends"
                                             value={friendSearch}
-                                            onKeyDown={handleFriendSearch}
-                                            onChange={(e) => setFriendSearch(e.target.value)}
+                                            onChange={handleFriendSearch}
                                         />
-                                        <div className="text-sm font-light">Press enter to add friend</div>
+                                        <div className="flex flex-col px-6 py-4 gap-5 w-full">
+                                            {friendSuggestions.map((participant, index) => (
+                                                <div key={index} className="flex sm:items-center sm:flex-row justify-between flex-col items-start gap-5 cursor-pointer" onClick={() => handleAddFriend(participant)}>
+                                                    <div className="flex items-center">
+                                                        <Avatar className="h-9 w-9">
+                                                            <AvatarImage src={participant.picture} />
+                                                            <AvatarFallback>CJ</AvatarFallback>
+                                                        </Avatar>
+                                                        <div className="ml-4 space-y-2 max-w-5 sm:max-w-lg">
+                                                            <p className="text-sm font-medium">{participant.name}</p>
+                                                            <p className="hidden sm:block text-sm text-muted-foreground">
+                                                                {participant.email}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
                                         <div className="space-y-2">
-                                            {friends.map((friend, index) => (
-                                                <div key={index} className="flex items-center justify-between space-x-2">
-                                                    <span className='w-56 text-clip text-wrap'>{friend}</span>
+                                            {friends.map((friend) => (
+                                                <div key={friend.id} className="flex items-center justify-between space-x-2">
+                                                    <div className="flex items-center space-x-2 w-64 text-clip text-wrap">
+                                                        <Avatar className="h-9 w-9">
+                                                            <AvatarImage src={friend.picture} />
+                                                            <AvatarFallback>CJ</AvatarFallback>
+                                                        </Avatar>
+                                                        <span>{friend.name}</span>
+                                                    </div>
                                                     <Input
                                                         type="number"
                                                         placeholder="Enter share"
-                                                        value={friendShares[friend]}
-                                                        onChange={(e) => handleShareChange(friend, e.target.value)}
+                                                        value={friendShares[friend.id]}
+                                                        onChange={(e) => handleShareChange(friend.id, e.target.value)}
                                                     />
-                                                    <span onClick={() => { removeFriend(friend) }}><X /></span>
+                                                    <span onClick={() => removeFriend(friend)}>
+                                                        <X />
+                                                    </span>
                                                 </div>
                                             ))}
                                         </div>
@@ -215,8 +346,8 @@ export default function CreateExpense() {
                                     <Button variant="outline" onClick={() => setStep(1)}>
                                         Back
                                     </Button>
-                                    <Button className="ml-auto" onClick={handleSubmit}>
-                                        Submit
+                                    <Button className="ml-auto" disabled={isLoading} onClick={handleSubmit}>
+                                        {isLoading ? "Loading..." : "Submit"}
                                     </Button>
                                 </>
                             )}
