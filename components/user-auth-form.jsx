@@ -1,34 +1,37 @@
 "use client"
 
 import * as React from "react"
-
-import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { createClient } from "@/lib/supabase/client"
 
-export function UserAuthForm({ className, ...props }) {
+export function UserAuthForm() {
     const [isLoading, setIsLoading] = React.useState(false)
+    const supabase = createClient();
 
-    async function onSubmit(event) {
+    async function handleClick(event) {
         event.preventDefault()
         setIsLoading(true)
-
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: location.origin + "/auth/callback?next=/dashboard",
+            }
+        })
         setTimeout(() => {
             setIsLoading(false)
         }, 3000)
     }
 
     return (
-        <div className={cn("grid gap-6", className)} {...props}>
-            <Button  type="button" disabled={isLoading}>
+        <div className="grid gap-6">
+            <Button type="button" disabled={isLoading} onClick={handleClick}>
                 {isLoading ? (
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
-                    <Icons.gitHub className="mr-2 h-4 w-4" />
+                    <Icons.google className="mr-2 h-4 w-4" />
                 )}{" "}
-                GitHub
+                Google
             </Button>
         </div>
     )

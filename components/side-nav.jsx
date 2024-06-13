@@ -8,9 +8,10 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-const SideNav = ({ className }) => {
+import SignOutButton from "./sign-out-button";
+const SideNav = () => {
     return (
-        <div className={cn("p-5", className)}>
+        <div className="p-5 hidden md:block ">
             <div className="flex items-center gap-2 my-5">
                 <div
                     className="w-48 justify-evenly flex items-center"
@@ -46,7 +47,7 @@ const SideNav = ({ className }) => {
                     {
                         title: "Expense shares",
                         icon: Inbox,
-                        href: "/dashboard/expense_share",
+                        href: "/dashboard/share",
                         variant: "ghost",
                     },
                 ]}
@@ -60,15 +61,11 @@ const SideNav = ({ className }) => {
                         href: "/dashboard/notifications",
                         variant: "ghost",
                     },
-                    {
-                        title: "Logout",
-                        icon: LogOut,
-                        href: "/",
-                        variant: "ghost",
-                    },
+
                 ]}
             />
 
+            <SignOutButton />
 
             {/* 
              TODO: Add Groups 
@@ -91,7 +88,7 @@ const SideNav = ({ className }) => {
             <CreateGroup></CreateGroup>
             */}
 
-        </div>
+        </div >
     )
 }
 

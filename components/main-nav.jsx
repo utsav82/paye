@@ -1,12 +1,12 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-export function Nav({ links, isCollapsed }) {
+export function Nav({ links }) {
   return (
     <div
-      className="group flex flex-col gap-4 py-2 data-[collapsed=true]:py-2"
+      className="mt-2 flex flex-col gap-4 py-2 data-[collapsed=true]:py-2"
     >
-      <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
+      <nav className="grid gap-1 px-2">
         {links.map((link, index) =>
         (
           <Link

@@ -9,6 +9,7 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
+import SignOutButton from "./sign-out-button";
 
 const MobileSideNav = () => {
     const [isNavOpen, setNavOpen] = useState(false);
@@ -70,7 +71,7 @@ const MobileSideNav = () => {
                             {
                                 title: "Expense shares",
                                 icon: Inbox,
-                                href: "/dashboard/expense_share",
+                                href: "/dashboard/share",
                                 variant: "ghost",
                             },
                         ]}
@@ -84,14 +85,9 @@ const MobileSideNav = () => {
                                 href: "/dashboard/notifications",
                                 variant: "ghost",
                             },
-                            {
-                                title: "Logout",
-                                icon: LogOut,
-                                href: "/",
-                                variant: "ghost",
-                            },
                         ]}
                     />
+                    <SignOutButton />
                 </div>
             </div>}
         </div>

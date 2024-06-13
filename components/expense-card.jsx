@@ -29,7 +29,7 @@ export default function ExpenseCard({ expenseData }) {
                     </div>
                 </div>
                 <Link href={`/dashboard/expense/${expenseData.id}`} className="font-light text-sm p-5">
-                    View more {"->"}
+                    View more {">"}
                 </Link>
             </div>
         </Card>
