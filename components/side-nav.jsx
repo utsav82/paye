@@ -9,23 +9,32 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import SignOutButton from "./sign-out-button";
-const SideNav = () => {
+import { createClient } from "@/lib/supabase/server";
+const SideNav = async () => {
+
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.getUser();
+    const user = data.user.user_metadata;
+    if (error) {
+        return <div>Error occured</div>
+    }
+
     return (
         <div className="p-5 hidden md:block ">
             <div className="flex items-center gap-2 my-5">
                 <div
                     className="w-48 justify-evenly flex items-center"
                 >
-                    <Avatar className="mr-2 h-5 w-5">
+                    <Avatar className="mr-2 h-8 w-8">
                         <AvatarImage
-                            src="https://avatar.vercel.sh/shadcn.png"
+                            src={user.picture}
                             className="grayscale"
                         />
                         <AvatarFallback>SC</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col">
-                        <span className="text-md font-semibold">Alicia Koch</span>
-                        <span className="text-sm ">m@gmail.com</span>
+                        <span className="text-md font-semibold">{user.name}</span>
+                        {/* <span className="text-sm text-wrap">{user.email}</span> */}
                     </div>
                 </div>
                 <ModeToggle />

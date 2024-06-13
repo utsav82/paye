@@ -98,7 +98,7 @@ export default function CreateExpense() {
                                         </Label>
                                     </RadioGroup>
                                 </div>
-                                
+
                                 {/* TODO:Enable screenshots
                                  <div className="space-y-2">
                                     <Label className="text-base" htmlFor="screenshot">
