@@ -158,7 +158,7 @@ export default function CreateExpense() {
 
 
     return (
-        <div className="fixed bottom-0 right-0">
+        <div className="fixed bottom-5 right-5 ">
             <Dialog>
                 <DialogTrigger asChild>
                     <Button variant="outline" className="m-4 mt-2 p-3">

@@ -1,34 +1,54 @@
+
+// tomorrrow convert this into server component
+
+"use client"
 import {
   Button
 } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Check, X } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import { useEffect, useState } from "react";
+import { CircleLoader } from "react-spinners";
 function Notifications() {
-
-  const notifications = [
-    {
-      id: 1,
-      name: "Alice Johnson",
-      amount: 250,
-      message: "Paid for your transportation expenses.",
-      time: "2 hours ago",
-    },
-    {
-      id: 2,
-      name: "Bob Smith",
-      amount: 150,
-      message: "Paid for your dinner.",
-      time: "1 day ago",
-    },
-    {
-      id: 3,
-      name: "Charlie Brown",
-      amount: 100,
-      message: "Paid for your movie ticket.",
-      time: "3 days ago",
+  const [loading, setLoading] = useState(true);
+  const supabase = createClient();
+  const [notifications, setNotifications] = useState([]);
+  const [user, setUser] = useState({});
+  const fetchNotifications = async () => {
+    const { data, error } = await supabase.from("notification").select("*,share:share(share_amount,expense:expenses(title)),user:users(*)").eq("user_id", "ae101505-29b0-4f53-91d1-9ca038510829");
+    if (error) {
+      console.error(error);
+      return;
     }
-  ];
+    console.log(data);
+    setNotifications(data);
+  };
 
+  const fetchUser = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (error) {
+      console.error(error);
+      return;
+    }
+    setUser(data.user);
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    fetchUser();
+    fetchNotifications();
+    setLoading(false)
+  }, []);
+
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <CircleLoader color="#2563EB" />
+      </div>
+    )
+  }
   return (
     <div className="container flex flex-col gap-4 my-16">
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ml-2">
@@ -44,7 +64,7 @@ function Notifications() {
                   alt="Profile picture"
                   className="rounded-full"
                   height="40"
-                  src="https://avatar.vercel.sh/shadcn.png"
+                  src={notification.user.picture}
                   style={{
                     aspectRatio: "40/40",
                     objectFit: "cover",
@@ -52,14 +72,12 @@ function Notifications() {
                   width="40"
                 />
                 <p className="text-base font-medium leading-none">
-                  {notification.name}
+                  {notification.user.name}
                 </p></div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400 m-2">
                 Paid
-                <span className="font-medium mx-1">${notification.amount}</span>
-                {notification.message}
+                <span className="font-medium m-3">{"₹" + notification.share.share_amount + " for share " + notification.share.expense.title}</span>
               </p>
-              <time className="text-sm font-medium">{notification.time}</time>
             </div>
             <div className="flex items-center space-x-2">
               <Button size="icon" variant="outline">

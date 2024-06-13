@@ -8,15 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import MarkAsPaid from "@/components/mark-as-paid"
 
-import { Button } from "./ui/button"
 
 export default function DataTable({ data }) {
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Group</TableHead>
+          <TableHead>Expense</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Payer</TableHead>
           <TableHead className="min-w-36" >Date</TableHead>
@@ -26,12 +26,12 @@ export default function DataTable({ data }) {
       <TableBody>
         {data.map((data) => (
           <TableRow key={data.id}>
-            <TableCell className="font-medium">{data.groupName}</TableCell>
+            <TableCell className="font-medium">{data.expense.title}</TableCell>
             <TableCell>{data.status}</TableCell>
-            <TableCell>{data.payer}</TableCell>
-            <TableCell>{data.date}</TableCell>
-            <TableCell>{"₹" + data.amount}</TableCell>
-            {(data.status === 'pending') && < TableCell > <Button className="rounded">Mark as Paid</Button></TableCell>}
+            <TableCell>{data.expense.created_by.name}</TableCell>
+            <TableCell>{new Date(data.expense.date).toDateString()}</TableCell>
+            <TableCell>{"₹" + data.share_amount}</TableCell>
+            {(data.status === 'pending') && <TableCell > <MarkAsPaid shareId={data.id} userId={data.user_id} /></TableCell>}
           </TableRow>
         ))}
       </TableBody>

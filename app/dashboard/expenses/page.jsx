@@ -16,10 +16,6 @@ async function page() {
     .select()
     .eq('created_by', userData.user.id);
 
-  console.log(expensesData);
-
-  const dummyData = []
-
   return (
     <div className="container flex flex-col gap-4 my-16">
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ml-2">

@@ -6,7 +6,6 @@ import getRandomCategoryColor from "@/lib/category-color";
 const page = async ({ params }) => {
 
   const supabase = createClient();
-  console.log(params)
   // fetch from supabase expense with join of shares table using params.expenseId
 
   let { data: expenseData, error: expenseError } = await supabase
@@ -27,8 +26,6 @@ const page = async ({ params }) => {
     .eq('expense_id', expenseData.id);
 
   if (shareError) throw shareError;
-
-  console.log(shareData)
 
 
   return (
