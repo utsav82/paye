@@ -14,7 +14,7 @@ const page = async () => {
 
   const { data: shareData, error: shareError } = await supabase
     .from('share')
-    .select('*,expense:expenses(title,date,created_by:users(name))')
+    .select('*,expense:expenses(title,date,created_by:users(name,id))')
     .eq('user_id', userData.user.id);
 
 

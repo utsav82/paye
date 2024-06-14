@@ -31,7 +31,7 @@ export default function DataTable({ data }) {
             <TableCell>{data.expense.created_by.name}</TableCell>
             <TableCell>{new Date(data.expense.date).toDateString()}</TableCell>
             <TableCell>{"₹" + data.share_amount}</TableCell>
-            {(data.status === 'pending') && <TableCell > <MarkAsPaid shareId={data.id} userId={data.user_id} /></TableCell>}
+            {(data.status === 'pending') && <TableCell > <MarkAsPaid shareId={data.id} userId={data.expense.created_by.id} /></TableCell>}
           </TableRow>
         ))}
       </TableBody>

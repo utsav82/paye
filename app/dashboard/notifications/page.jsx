@@ -13,7 +13,7 @@ async function Notifications() {
     throw userDataError;
   }
 
-  const { data: notifications, error: notificationError } = await supabase.from("notification").select("*,share:share(share_amount,id,expense:expenses(title)),user:users(*)").eq("user_id", userData.user.id);
+  const { data: notifications, error: notificationError } = await supabase.from("notification").select("*,share:share(share_amount,id,expense:expenses(title),user:users(name,picture))").eq("user_id", userData.user.id);
   if (notificationError) {
     throw notificationError;
   }
@@ -34,7 +34,7 @@ async function Notifications() {
                   alt="Profile picture"
                   className="rounded-full"
                   height="40"
-                  src={notification.user.picture}
+                  src={notification.share.user.picture}
                   style={{
                     aspectRatio: "40/40",
                     objectFit: "cover",
@@ -42,7 +42,7 @@ async function Notifications() {
                   width="40"
                 />
                 <p className="text-base font-medium leading-none">
-                  {notification.user.name}
+                  {notification.share.user.name}
                 </p></div>
               <p className="text-sm text-gray-500 dark:text-gray-400 m-2">
                 Paid
