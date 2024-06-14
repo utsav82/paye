@@ -291,13 +291,12 @@ export default function CreateExpense() {
                                             value={friendSearch}
                                             onChange={handleFriendSearch}
                                         />
-                                        <div className="flex flex-col px-6 py-4 gap-5 w-full">
+                                        <div className="flex flex-col py-4 gap-5 w-full">
                                             {friendSuggestions.map((participant, index) => (
                                                 <div key={index} className="flex sm:items-center sm:flex-row justify-between flex-col items-start gap-5 cursor-pointer" onClick={() => handleAddFriend(participant)}>
                                                     <div className="flex items-center">
                                                         <Avatar className="h-9 w-9">
                                                             <AvatarImage src={participant.picture} />
-                                                            <AvatarFallback>CJ</AvatarFallback>
                                                         </Avatar>
                                                         <div className="ml-4 space-y-2 max-w-5 sm:max-w-lg">
                                                             <p className="text-sm font-medium">{participant.name}</p>
@@ -315,7 +314,6 @@ export default function CreateExpense() {
                                                     <div className="flex items-center space-x-2 w-64 text-clip text-wrap">
                                                         <Avatar className="h-9 w-9">
                                                             <AvatarImage src={friend.picture} />
-                                                            <AvatarFallback>CJ</AvatarFallback>
                                                         </Avatar>
                                                         <span>{friend.name}</span>
                                                     </div>

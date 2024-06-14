@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
 const MarkAsPaid = ({ shareId, userId }) => {
   const supabase = createClient()
   const [hasNotification, setHasNotification] = useState(false)
-
+  const router = useRouter()
   useEffect(() => {
     const fetchShare = async () => {
       const { data, error } = await supabase
@@ -30,6 +31,8 @@ const MarkAsPaid = ({ shareId, userId }) => {
     // mark the expense as paid
     if (!error)
       setHasNotification(true)
+   
+    router.refresh();
   }
   return (
     <Button className="rounded" variant={!hasNotification ? "default" : "primary"} onClick={() => markAsPaid()}>
