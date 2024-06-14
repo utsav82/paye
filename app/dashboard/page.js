@@ -13,7 +13,49 @@ export const metadata = {
   title: "Dashboard",
 };
 
-export default function DashboardPage() {
+import { createClient } from "@/lib/supabase/server";
+
+export default async function DashboardPage() {
+  const supabase = createClient();
+
+  const { data: userData } = await supabase.auth.getUser();
+
+  const { data: expenses, error: expensesError } = await supabase
+    .from("expenses")
+    .select("*")
+    .eq("created_by", userData.user.id);
+
+  const totalExpensesCount = expenses.length;
+  const totalExpensesAmount = expenses.reduce(
+    (sum, expense) => sum + expense.amount,
+    0
+  );
+
+  const expenseIds = expenses.map((expense) => expense.id);
+
+  const { data: owedShares, error: owedSharesError } = await supabase
+    .from("share")
+    .select("share_amount")
+    .in("expense_id", expenseIds)
+    .neq("user_id", userData.user.id)
+    .eq("status", "pending");
+
+  const totalMoneyOwed = owedShares.reduce(
+    (sum, share) => sum + share.share_amount,
+    0
+  );
+
+  const { data: userShareData, error: userShareError } = await supabase
+    .from("share")
+    .select("share_amount")
+    .eq("user_id", userData.user.id)
+    .eq("status", "pending");
+
+  const totalUserShareAmount = userShareData.reduce(
+    (sum, share) => sum + share.share_amount,
+    0
+  );
+
   return (
     <>
       <div className="flex-col flex">
@@ -47,18 +89,20 @@ export default function DashboardPage() {
               />
             </div>
           </div>
+
           <div className="grid gap-4 sm:grid-cols-3">
             <Card className="sm:col-span-2">
               <CardHeader>
                 <CardTitle>Recent Expenses</CardTitle>
                 <CardDescription>
-                  You made 265 expenses this month.
+                  {` You made ${totalExpensesCount} expenses this month.`}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <RecentExpenses />
+                <RecentExpenses expenses={expenses} />
               </CardContent>
             </Card>
+
             <div className="flex flex-col gap-4">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -79,10 +123,9 @@ export default function DashboardPage() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">₹45,231.89</div>
-                  <p className="text-xs text-muted-foreground">
-                    +20.1% from last month
-                  </p>
+                  <div className="text-2xl font-bold">
+                    {"₹" + totalExpensesAmount}
+                  </div>
                 </CardContent>
               </Card>
 
@@ -107,10 +150,9 @@ export default function DashboardPage() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">₹2350</div>
-                  <p className="text-xs text-muted-foreground">
-                    +180.1% from last month
-                  </p>
+                  <div className="text-2xl font-bold">
+                    {"₹" + totalMoneyOwed}
+                  </div>
                 </CardContent>
               </Card>
 
@@ -134,10 +176,9 @@ export default function DashboardPage() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">₹12,234</div>
-                  <p className="text-xs text-muted-foreground">
-                    +19% from last month
-                  </p>
+                  <div className="text-2xl font-bold">
+                    {"₹" + totalUserShareAmount}
+                  </div>
                 </CardContent>
               </Card>
             </div>
