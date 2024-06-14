@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   const supabase = createClient();
   const data = await request.json();
-  const user = await supabase.auth.getUser();
-
+  const { data: userData } = await supabase.auth.getUser();
+  console.log(userData);
   const {
     title,
     billAmount,
@@ -49,7 +49,7 @@ export async function POST(request) {
           amount: billAmount,
           category: category,
           date: new Date(date).toISOString(),
-          created_by: user.user.id,
+          created_by: userData.user.id,
         },
       ])
       .select();
@@ -61,7 +61,7 @@ export async function POST(request) {
     const shares = [
       {
         expense_id: expenseId,
-        user_id: user.user.id,
+        user_id: userData.user.id,
         share_amount: yourShare,
         status: "successful",
       },
@@ -85,6 +85,7 @@ export async function POST(request) {
       message: "Expense and shares uploaded successfully.",
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -54,7 +54,7 @@ const SideNav = async () => {
                         variant: "ghost",
                     },
                     {
-                        title: "Expense shares",
+                        title: "Expenses owed",
                         icon: Inbox,
                         href: "/dashboard/share",
                         variant: "ghost",

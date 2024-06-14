@@ -28,6 +28,22 @@ export default function CreateExpense() {
     const [friendSuggestions, setFriendSuggestions] = useState([]);
     const [allFriends, setAllFriends] = useState([])
     const [isLoading, setisLoading] = useState(false);
+    const [open, setOpen] = useState(false)
+
+
+    const clear = () => {
+        setStep(1);
+        setBillAmount("");
+        setYourShare("");
+        setDescription("");
+        setCategory("food");
+        setTitle("");
+        setDate(new Date().toISOString().split('T')[0]);
+        setFriends([]);
+        setFriendSearch("");
+        setFriendShares({});
+        setFriendSuggestions([]);
+    };
 
     useEffect(() => {
 
@@ -134,11 +150,13 @@ export default function CreateExpense() {
             });
 
             const result = await response.json();
-            if (!response.error) {
+            if (!result.error) {
                 toast({
                     title: "Expense and shares uploaded successfully.",
                 })
-                router.push("/dashboard/expenses");
+                setOpen(false);
+                clear();
+                router.refresh();
             } else {
                 toast({
                     variant: "destructive",
@@ -153,13 +171,14 @@ export default function CreateExpense() {
         }
         finally {
             setisLoading(false);
+
         }
     }
 
 
     return (
         <div className="fixed bottom-5 right-5 ">
-            <Dialog>
+            <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                     <Button variant="outline" className="m-4 mt-2 p-3">
                         <svg

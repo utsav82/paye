@@ -85,7 +85,7 @@ const MobileSideNav = () => {
                                 variant: "ghost",
                             },
                             {
-                                title: "Expense shares",
+                                title: "Expenses owed",
                                 icon: Inbox,
                                 href: "/dashboard/share",
                                 variant: "ghost",
