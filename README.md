@@ -1,82 +1,69 @@
-# Paye
+### Paye
 
-## Introduction
+Paye is a web application that allows users to track their expenses, split bills with friends, and manage their financial activities efficiently. Built using modern web technologies, Paye leverages Next.js for the frontend, Shadcn UI for styling, and Supabase for backend services including database management and user authentication.
 
-Welcome to the documentation for the Paye frontend application built with Next.js. Paye is a Splitwise clone designed to simplify expense tracking and sharing among users.
+![image](https://github.com/utsav82/paye/assets/92868052/b785dd18-24b1-47cb-84d5-75b8a7c94aa6)
 
-**Work in Progress**
-
-This project is currently under in progress. The frontend is in a preliminary stage and serves as a placeholder.
-
-![paye](https://github.com/utsav82/paye/assets/92868052/8d9b1d56-05e7-48d8-87e7-0ce7d5527c2c)
-
+![image](https://github.com/utsav82/paye/assets/92868052/4510d400-c5d8-46f1-8c96-383c2ce3f797)
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you start using Paye, make sure you have the following prerequisites installed:
+Before you begin, ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/)
+- [Node.js](https://nodejs.org/en/download/)
+- [Supabase Account](https://supabase.io/)
 
 ### Installation
 
-1. Clone the Paye repository:
-
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/yourusername/paye.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
    cd paye
    ```
 
-3. Install dependencies:
-
+2. **Install Dependencies**
    ```bash
    npm install
    ```
 
-4. Start the development server:
+3. **Set Up Supabase**
+   - Go to the [Supabase Dashboard](https://app.supabase.io/).
+   - Create a new project and obtain the `API URL` and `Anon Key`.
+   - Create the necessary tables (`expenses`, `shares`, `users`, etc.) as per the schema provided earlier.
 
+4. **Environment Variables**
+   - Create a `.env.local` file in the root directory and add your Supabase credentials:
+     ```bash
+     NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
+
+5. **Run the Development Server**
    ```bash
    npm run dev
    ```
 
-   The application will be accessible at [http://localhost:3000](http://localhost:3000).
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
 
-## Usage
+## Core Features
 
-### Overview
+### 1. User Authentication
 
-Paye provides a user-friendly interface for managing expenses within groups or individual transactions. The following sections detail the main features and functionalities.
+Paye uses Supabase for user authentication. Users can sign up, log in, and log out.
 
-### Dashboard
+### 2. Expense Tracking
 
-The dashboard provides an overview of your financial activities, displaying total amounts owed and owed to you. It also includes visual representations of expenses.
+Users can create and manage their expenses. Each expense includes a title, amount, description, category, and date.
 
-### Group Management
+### 3. Bill Splitting
 
-Create and manage groups for shared expenses with roommates, friends, or family. Navigate seamlessly between different groups.
+Users can split expenses with friends. Each friend's share is recorded, and the status of each share can be tracked (e.g., pending, paid).
 
-### Expense Entry
+### 4. Notifications
 
-Add expenses effortlessly with a simplified form. Include essential details such as amount, description, date, and category. Instant expenses not tied to any group are also supported.
+Users receive notifications when someone marks their share as paid. The notification system allows users to accept or reject the payment status.
 
-### User Balances
 
-View and settle debts with other users easily. Clear representations of balances make tracking shared expenses straightforward.
-
-### Expense History
-
-Access a chronological list of all expenses. Filter or search based on date, category, or group to quickly locate specific transactions.
-
-## Customization
-
-Adjust your profile settings, including personal details and notification preferences, for a personalized experience.
-
-## Styling
-
-Paye utilizes the shadcn library to enhance the visual appeal and user experience.
+Feel free to customize the project and add more features as needed. Happy coding!
