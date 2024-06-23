@@ -2,7 +2,7 @@ import React from "react";
 import DataTable from "@/components/tabledata";
 import { createClient } from "@/lib/supabase/server";
 export const metadata = {
-  title: "Expense Shares",
+  title: "Shares to Pay",
 };
 
 const page = async () => {

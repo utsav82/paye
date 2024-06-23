@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { Bell, File, Inbox, LayoutDashboard, LogOut } from "lucide-react";
+import { Bell, File, Inbox, LayoutDashboard, LogOut, Hand } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Nav } from "@/components/main-nav";
 import {
@@ -54,9 +54,15 @@ const SideNav = async () => {
                         variant: "ghost",
                     },
                     {
-                        title: "Expenses owed",
+                        title: "To Pay",
+                        icon: Hand,
+                        href: "/dashboard/pay",
+                        variant: "ghost",
+                    },
+                    {
+                        title: "To Receive",
                         icon: Inbox,
-                        href: "/dashboard/share",
+                        href: "/dashboard/receive",
                         variant: "ghost",
                     },
                 ]}

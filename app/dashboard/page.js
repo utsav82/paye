@@ -104,7 +104,7 @@ export default async function DashboardPage() {
             </Card>
 
             <div className="flex flex-col gap-4">
-              <Card>
+              <Card className="bg-[url('/b4.svg')] bg-cover">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
                     Total Expenses
@@ -129,10 +129,10 @@ export default async function DashboardPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-[url('/b2.svg')] bg-cover">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Money owed
+                    Money To Receive
                   </CardTitle>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,10 +156,10 @@ export default async function DashboardPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-[url('/b3.svg')] bg-cover">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Shared Expenses
+                   Money To Pay
                   </CardTitle>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { Separator } from "@/components/ui/separator";
-import { Bell, File, Inbox, LayoutDashboard, LogOut } from "lucide-react";
+import { Bell, File, Inbox, LayoutDashboard, LogOut, Hand } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Nav } from "@/components/main-nav";
 import {
@@ -85,8 +85,14 @@ const MobileSideNav = () => {
                                 variant: "ghost",
                             },
                             {
-                                title: "Expenses owed",
+                                title: "Money owed",
                                 icon: Inbox,
+                                href: "/dashboard/owe",
+                                variant: "ghost",
+                            },
+                            {
+                                title: "Shared Expenses",
+                                icon: Hand,
                                 href: "/dashboard/share",
                                 variant: "ghost",
                             },
