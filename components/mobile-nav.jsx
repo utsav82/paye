@@ -85,15 +85,15 @@ const MobileSideNav = () => {
                                 variant: "ghost",
                             },
                             {
-                                title: "Money owed",
-                                icon: Inbox,
-                                href: "/dashboard/owe",
+                                title: "To Pay",
+                                icon: Hand,
+                                href: "/dashboard/pay",
                                 variant: "ghost",
                             },
                             {
-                                title: "Shared Expenses",
-                                icon: Hand,
-                                href: "/dashboard/share",
+                                title: "To Receive",
+                                icon: Inbox,
+                                href: "/dashboard/receive",
                                 variant: "ghost",
                             },
                         ]}

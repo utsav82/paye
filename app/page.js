@@ -39,14 +39,14 @@ export default function AuthenticationPage() {
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link
-                href="/terms"
+                href="#"
                 className="underline underline-offset-4 hover:text-primary"
               >
                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link
-                href="/privacy"
+                href="#"
                 className="underline underline-offset-4 hover:text-primary"
               >
                 Privacy Policy
@@ -56,9 +56,7 @@ export default function AuthenticationPage() {
 
             <p className="px-8 text-center text-sm text-muted-foreground flex items-center justify-around">
               For more information view our
-              <a
-                href="https://github.com/utsav82/paye"
-              >
+              <a href="https://github.com/utsav82/paye">
                 <svg viewBox="0 0 438.549 438.549" className="h-5 w-5 -ml-8">
                   <path
                     fill="currentColor"

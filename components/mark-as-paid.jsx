@@ -3,8 +3,10 @@ import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import { set } from "date-fns"
 const MarkAsPaid = ({ shareId, userId }) => {
   const supabase = createClient()
+  const [isLoading, setIsLoading] = useState(false)
   const [hasNotification, setHasNotification] = useState(false)
   const router = useRouter()
   useEffect(() => {
@@ -25,17 +27,20 @@ const MarkAsPaid = ({ shareId, userId }) => {
   }, [shareId])
 
   const markAsPaid = async () => {
-
     if (hasNotification) return
+
+    setIsLoading(true)
     const { error } = await supabase.from("notification").insert([{ share_id: shareId, user_id: userId }])
+    setIsLoading(false);
+
     // mark the expense as paid
     if (!error)
       setHasNotification(true)
-   
+
     router.refresh();
   }
   return (
-    <Button className="rounded" variant={!hasNotification ? "default" : "primary"} onClick={() => markAsPaid()}>
+    <Button disabled={isLoading} className="rounded" variant={!hasNotification ? "default" : "primary"} onClick={() => markAsPaid()}>
       {hasNotification ? "Waiting for confirmation" : "Mark as paid"}
     </Button>
   )
