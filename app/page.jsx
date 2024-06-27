@@ -38,38 +38,33 @@ export default function page() {
                             </div>
                         </div>
                     </div>
-                </WavyBackground>
-                <section className="w-full py-12 sm:py-24 md:py-32">
-                    <div className="container px-4 md:px-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div className="flex flex-col items-center text-center">
-                                <WatchIcon className="h-12 w-12 text-primary" />
-                                <h3 className="text-2xl font-bold mt-4">Expense Tracking</h3>
-                                <p className="text-muted-foreground mt-2">
-                                    Easily track your expenses and see where your money is going.
-                                </p>
-                            </div>
-                            <div className="flex flex-col items-center text-center">
-                                <SplitIcon className="h-12 w-12 text-primary" />
-                                <h3 className="text-2xl font-bold mt-4">Bill Splitting</h3>
-                                <p className="text-muted-foreground mt-2">
-                                    Split bills and expenses with your friends, family, or roommates.
-                                </p>
-                            </div>
-                            <div className="flex flex-col items-center text-center">
-                                <CheckIcon className="h-12 w-12 text-primary" />
-                                <h3 className="text-2xl font-bold mt-4">Reporting</h3>
-                                <p className="text-muted-foreground mt-2">
-                                    Generate detailed reports to understand your spending habits.
-                                </p>
+                    <section className="w-full py-12 sm:py-24 md:py-24">
+                        <div className="container px-4 md:px-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                                <div className="flex flex-col items-center text-center">
+                                    <WatchIcon className="h-12 w-12 text-primary" />
+                                    <h3 className="text-2xl font-bold mt-4">Expense Tracking</h3>
+
+                                </div>
+                                <div className="flex flex-col items-center text-center">
+                                    <SplitIcon className="h-12 w-12 text-primary" />
+                                    <h3 className="text-2xl font-bold mt-4">Bill Splitting</h3>
+
+                                </div>
+                                <div className="flex flex-col items-center text-center">
+                                    <CheckIcon className="h-12 w-12 text-primary" />
+                                    <h3 className="text-2xl font-bold mt-4">Reporting & Analytics</h3>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </WavyBackground>
+
 
                 <HeroTabs />
             </main>
-            <section className="w-full py-24 md:py-32 lg:py-40 ">
+            <section className="w-full py-24 md:py-32 lg:py-40">
                 <div className="container px-4 md:px-6 text-center">
                     <div className="max-w-3xl mx-auto space-y-4">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
