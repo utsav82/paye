@@ -101,7 +101,7 @@ export const WavyBackground = ({
     return (
         <div
             className={cn(
-                "relative overflow-hidden z-0 w-full h-full ",
+                "relative overflow-hidden z-0 w-full h-screen",
                 containerClassName
             )}
         >
