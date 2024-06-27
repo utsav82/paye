@@ -2,7 +2,7 @@
 
 Paye is a web application that allows users to track their expenses, split bills with friends, and manage their financial activities efficiently. Built using modern web technologies, Paye leverages Next.js for the frontend, Shadcn UI for styling, and Supabase for backend services including database management and user authentication.
 
-![image](https://github.com/utsav82/paye/assets/92868052/b785dd18-24b1-47cb-84d5-75b8a7c94aa6)
+![image](https://github.com/utsav82/paye/assets/92868052/d9dd0956-40a6-4265-b6ae-33476a8d6d17)
 
 ![image](https://github.com/utsav82/paye/assets/92868052/4510d400-c5d8-46f1-8c96-383c2ce3f797)
 
