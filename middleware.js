@@ -57,12 +57,12 @@ export async function middleware(request) {
   const { data } = await supabase.auth.getUser();
   const { pathname, origin } = request.nextUrl;
   if (data.user) {
-    if (pathname === "/") {
+    if (pathname === "/auth") {
       return NextResponse.redirect(`${origin}/dashboard`);
     }
   } else {
     if (pathname.startsWith("/dashboard")) {
-      return NextResponse.redirect(`${origin}`);
+      return NextResponse.redirect(`${origin}/auth`);
     }
   }
 
