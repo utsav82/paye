@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function page() {
     return (
-        <div >
+        <div className="bg-black" >
             <main >
                 <WavyBackground className=" h-screen text-white w-full py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 relative">
                     <header className="absolute -top-5 w-full px-4 lg:px-8 h-14 flex items-center pt-10">
