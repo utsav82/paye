@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { Bell, File, Inbox, LayoutDashboard, LogOut, Hand } from "lucide-react";
+import { Bell, File, Inbox, LayoutDashboard, LogOut, Hand,UserRound  } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Nav } from "@/components/main-nav";
 import {
@@ -8,6 +8,7 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
+
 import SignOutButton from "./sign-out-button";
 import { createClient } from "@/lib/supabase/server";
 const SideNav = async () => {
@@ -63,6 +64,12 @@ const SideNav = async () => {
                         title: "To Receive",
                         icon: Inbox,
                         href: "/dashboard/receive",
+                        variant: "ghost",
+                    },
+                    {
+                        title: "Profile",
+                        icon: UserRound,
+                        href: "/dashboard/profile",
                         variant: "ghost",
                     },
                 ]}
