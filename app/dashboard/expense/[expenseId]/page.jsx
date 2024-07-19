@@ -37,11 +37,11 @@ const page = async ({ params }) => {
         <div className="flex items-center px-4 py-2">
           <div
             className="text-xl font-bold">{expenseData.title}</div>
-        </div>
+        </div>  
         <Separator />
         <div className="flex items-center justify-between px-6 py-4">
           <div className="text-left">
-            <p className="text-sm mt-2">{expenseData.description}</p>
+            <p className="text-sm mt-2" >{expenseData.description}</p>
             <p className="text-sm mt-2">{"Expense ID #" + params.expenseId}</p>
             <div className="flex items-center justify-start mt-4">
               <div style={{ backgroundColor: getRandomCategoryColor() }} className={` text-white rounded-full px-3 py-1 text-sm`}>{expenseData.category}</div>
