@@ -31,7 +31,7 @@ const page = async ({ params }) => {
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="h-screen container mt-10 items-stretch"
+      className="h-screen container mt-10 items-stretch "
     >
       <ResizablePanel defaultSize={50} minSize={42}>
         <div className="flex items-center px-4 py-2">
